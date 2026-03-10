@@ -1,0 +1,23 @@
+
+
+
+services:
+  
+  pedalhunt-api:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    image: pedalhunt-api
+    hostname: pedalhunt-api
+    container_name: pedalhunt-api
+    networks:
+      - pedalhunt
+    ports:
+      - 8000:8000
+    
+
+networks:
+  pedalhunt:
+    
+
+

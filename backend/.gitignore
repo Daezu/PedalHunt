@@ -1,0 +1,9 @@
+
+/local
+
+/.venv
+
+**/.pytest_cache
+tests/junit-results.xml
+**/__pycache__
+
