@@ -9,9 +9,11 @@ if __name__ == "__main__":
     import uvicorn
     settings = getSettings()
     logConfig, logLevel = getLoggingSetup(settings.API_DEBUGMODE, settings.API_LOGFILE)
-    app = create_app(logLevel)
     
-    uvicorn.run(app, host=settings.API_HOST, port=settings.API_PORT, log_config=logConfig)
+    uvicorn.run("app:create_app", factory=True, 
+                host=settings.API_HOST, port=settings.API_PORT, 
+                log_config=logConfig, log_level=logLevel, 
+                reload=settings.API_DEBUGMODE, reload_excludes=["*.log"])
 else:
     app = create_app()
 

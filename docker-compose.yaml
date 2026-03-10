@@ -8,6 +8,11 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: pedalhunt-api
+    develop:
+      watch:
+        - action: sync
+          path: ./backend/src
+          target: /app
     hostname: pedalhunt-api
     container_name: pedalhunt-api
     networks:

@@ -76,6 +76,10 @@ class CustomFormatter(logging.Formatter):
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
 
+class NoTraceFilter(logging.Filter):
+    def filter(self, record):
+        return "_trace" in record.getMessage()
+
 from typing import Tuple
 def getLoggingSetup(debugmode: bool = True, logfile: str = None) -> Tuple[dict, int]:
     """
@@ -90,10 +94,6 @@ def getLoggingSetup(debugmode: bool = True, logfile: str = None) -> Tuple[dict, 
         if os.path.exists(logfile):
             open(logfile, 'w').close()
         handlers.append("file")
-
-    class NoTraceFilter(logging.Filter):
-        def filter(self, record):
-            return "_trace" in record.getMessage()
 
     config = {
         "version": 1,
